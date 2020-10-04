@@ -35,7 +35,9 @@ Home Environmental Monitoring
 
 
 
+# 4. 编程
 
+语言选用 python，可跨平台。
 
 
 
