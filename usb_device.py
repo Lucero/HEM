@@ -34,7 +34,7 @@ elif(platform.system()=="Linux"):
         Lucero = cdll.LoadLibrary( "./libs/Linux_ARMv7/libLucero.so" )
     else:
         if "64bit" in platform.architecture():
-            Lucero = cdll.LoadLibrary( "./lib/Linux_x64/libLucero.so" )
+            Lucero = cdll.LoadLibrary( "./libs/Linux_x64/libLucero.so" )
         else:
             Lucero = cdll.LoadLibrary( "./libs/Linux_x86/libLucero.so" )
 else:

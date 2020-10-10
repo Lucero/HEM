@@ -1,9 +1,12 @@
 from ctypes import *
 from usb_device import *
 from logger import *
+from threading import Lock,Thread
 
 DevHandles = (c_uint * 20)()
 DevIndex = 0
+
+dev_lock = Lock()
 
 def device_open():
     # Scan device

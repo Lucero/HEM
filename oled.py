@@ -112,13 +112,17 @@ def OLED_Fill(data):
                 WriteBuffer[1] = 0x00 # set low column address
             elif j == 2:
                 WriteBuffer[1] = 0x10 # set high column address
+            dev_lock.acquire()
             ret = IIC_WriteBytes(DevHandles[DevIndex], IICIndex_OLED, IICAddr_OLED, WriteBuffer, 2, 1000)
+            dev_lock.release()
             if(ret != IIC_SUCCESS):
                 logger.error("OLED Clear cmd %d.%d failed!", i, j)
         WriteBuffer[0] = 0x40 # command
         for j in range(0, 128):
             WriteBuffer[1 + j] = data[i * 128 + j]
+        dev_lock.acquire()
         ret = IIC_WriteBytes(DevHandles[DevIndex], IICIndex_OLED, IICAddr_OLED, WriteBuffer, 129, 1000)
+        dev_lock.release()
         if(ret != IIC_SUCCESS):
             logger.error("OLED Fill data %d.%d failed!", i, j)
 
